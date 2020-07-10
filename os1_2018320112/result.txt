@@ -1,0 +1,67 @@
+//call_my_stack : push 123, pop 321
+osta@osta-VirtualBox:~$ ./call_my_stack
+Push: 1
+Push: 2
+Push: 3
+Pop: 3
+Pop: 2
+Pop: 1
+
+//sudo dmesg
+[ 9241.700537] [System call] Oslab_push() : 1
+[ 9241.700547] ------Stack Top---------
+[ 9241.700549] 1
+[ 9241.700549] -------Stack Bottom-------
+[ 9241.700623] [System call] Oslab_push() : 2
+[ 9241.700624] ------Stack Top---------
+[ 9241.700624] 2
+[ 9241.700625] 1
+[ 9241.700625] -------Stack Bottom-------
+[ 9241.700629] [System call] Oslab_push() : 3
+[ 9241.700629] ------Stack Top---------
+[ 9241.700629] 3
+[ 9241.700630] 2
+[ 9241.700630] 1
+[ 9241.700631] -------Stack Bottom-------
+[ 9241.700633] [System call] Oslab_pop() : 3
+[ 9241.700634] --------Stack Top-------------
+[ 9241.700634] 2
+[ 9241.700635] 1
+[ 9241.700635] ----------Stack Bottom------------
+[ 9241.700638] [System call] Oslab_pop() : 2
+[ 9241.700638] --------Stack Top-------------
+[ 9241.700639] 1
+[ 9241.700639] ----------Stack Bottom------------
+[ 9241.700642] [System call] Oslab_pop() : 1
+[ 9241.700642] --------Stack Top-------------
+[ 9241.700643] ----------Stack Bottom------------
+
+
+//ex1 : push 112 pop21 : overlap
+osta@osta-VirtualBox:~$ ./ex1
+Push: 1
+Push: 1
+Push: 2
+Pop: 2
+Pop: 1
+
+
+//sudo dmesg
+[ 9278.619429] [System call] Oslab_push() : 1
+[ 9278.619433] ------Stack Top---------
+[ 9278.619435] 1
+[ 9278.619436] -------Stack Bottom-------
+[ 9278.619523] Overlap value
+[ 9278.619527] [System call] Oslab_push() : 2
+[ 9278.619527] ------Stack Top---------
+[ 9278.619528] 2
+[ 9278.619528] 1
+[ 9278.619529] -------Stack Bottom-------
+[ 9278.619531] [System call] Oslab_pop() : 2
+[ 9278.619532] --------Stack Top-------------
+[ 9278.619532] 1
+[ 9278.619533] ----------Stack Bottom------------
+[ 9278.619535] [System call] Oslab_pop() : 1
+[ 9278.619535] --------Stack Top-------------
+[ 9278.619536] ----------Stack Bottom------------
+
